@@ -13,12 +13,12 @@ cli = pycozmo.Client()
 @app.on_event("startup")
 def startup_event():
     cli.start()
-    time.sleep(2)  # give USB interface time
+    time.sleep(2)
     cli.connect()
     cli.anim_controller.enabled = True
     cli.enable_animations()
 
-    # 👇 Load animations after enabling them
+    
     cli.load_anims()
 
     print("✅ Cozmo connected and animations loaded!")
@@ -74,7 +74,7 @@ def handle_command(cmd: Command):
         )
         return {"status": "Lights off"}
 
-    # 🔥 Анимации
+    
     elif command == "anim_happy":
         cli.play_anim(name="anim_greeting_happy_03")
         return {"status": "Played happy animation"}
@@ -88,7 +88,7 @@ def handle_command(cmd: Command):
     return {"status": f"Unknown command: {command}"}
 
 
-# 📂 Раздача фронтенда
+# Раздача фронтенда
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
